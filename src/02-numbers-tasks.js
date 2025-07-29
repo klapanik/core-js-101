@@ -19,7 +19,9 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
-function getRectangleArea(width, height) { return width * height }
+function getRectangleArea(width, height) {
+  return width * height;
+}
 
 /**
  * Returns a circumference of circle given by radius.
@@ -32,7 +34,9 @@ function getRectangleArea(width, height) { return width * height }
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCircleCircumference(radius) { return 2 * Math.PI * radius }
+function getCircleCircumference(radius) {
+  return 2 * Math.PI * radius;
+}
 
 /**
  * Returns an average of two given numbers.
@@ -46,7 +50,9 @@ function getCircleCircumference(radius) { return 2 * Math.PI * radius }
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(value1, value2) { return (value1 + value2) / 2 }
+function getAverage(value1, value2) {
+  return (value1 + value2) / 2;
+}
 
 /**
  * Returns a distance between two points by cartesian coordinates.
@@ -82,7 +88,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-  return -(b / a)
+  return -(b / a);
 }
 
 // ax + b = 0
@@ -129,7 +135,9 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(value) { return value.toString()[0] }
+function getLastDigit(value) {
+  return Math.abs(value) % 10;
+}
 
 /**
  * Returns a number by given string representation.
@@ -142,7 +150,9 @@ function getLastDigit(value) { return value.toString()[0] }
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(value) { return Number(value) }
+function parseNumberFromString(value) {
+  return Number(value);
+}
 
 /**
  * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
@@ -157,8 +167,8 @@ function parseNumberFromString(value) { return Number(value) }
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  return Math.sqrt(a * a + b * b + c * c);
 }
 
 /**
@@ -178,8 +188,12 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  if (pow === 0) {
+    return num;
+  }
+
+  return Math.round(num / (10 ** pow)) * (10 ** pow);
 }
 
 /**
@@ -199,8 +213,18 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n <= 1) return false;
+  if (n <= 3) return true;
+  if (n % 2 === 0 || n % 3 === 0) return false;
+
+  for (let i = 5; i * i <= n; i += 6) {
+    if (n % i === 0 || n % (i + 2) === 0) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 /**
@@ -218,8 +242,12 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if (value === null || value === undefined) {
+    return def;
+  }
+  const numberedVal = Number(value);
+  return Number.isNaN(numberedVal) ? def : numberedVal;
 }
 
 module.exports = {
